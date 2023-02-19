@@ -7,7 +7,10 @@ const github = axios.create({
     baseURL: GITHUB_URL,
     headers: { Authorization: `token ${GITHUB_TOKEN}` },
 })
-
+github.interceptors.request.use(request => {
+    console.log(JSON.stringify(request))
+    return request
+})
     // Get search
     export const searchUsers = async (text) => {
         const params = new URLSearchParams({
